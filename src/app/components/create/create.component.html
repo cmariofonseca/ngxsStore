@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="formGroup">
+      <div class="form-group">
+        <label class="col-md-4">Name</label>
+        <input type="text" class="form-control" formControlName="name" #name/>
+        <div *ngIf="formGroup.controls['name'].invalid && (formGroup.controls['name'].dirty || formGroup.controls['name'].touched)" class="alert alert-danger">
+          <div *ngIf="formGroup.controls['name'].errors.required">
+            Name is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Email</label>
+        <input type="email" class="form-control" formControlName="email" #email/>
+        <div *ngIf="formGroup.controls['email'].invalid && (formGroup.controls['email'].dirty || formGroup.controls['email'].touched)" class="alert alert-danger">
+          <div *ngIf="formGroup.controls['email'].errors.required">
+            Email is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="addUser(name.value, email.value)" 
+            class="btn btn-primary"
+            [disabled]="formGroup.pristine || formGroup.invalid">Create User</button>
+      </div>
+    </form>
+  </div>
+</div>
